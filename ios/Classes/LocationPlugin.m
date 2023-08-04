@@ -60,6 +60,9 @@
         self.clLocationManager.desiredAccuracy = kCLLocationAccuracyBest;
     }
 }
+- (void)restartLocationUpdates {
+    [self.clLocationManager startUpdatingLocation];
+}
 
 -(void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
     [self initLocation];
@@ -323,6 +326,10 @@
             self.flutterResult(@0);
         }
     }
+
+- (void)locationManagerDidPauseLocationUpdates:(CLLocationManager *)manager {
+    [self restartLocationUpdates];
+}
 #if TARGET_OS_OSX
     else if (status == kCLAuthorizationStatusAuthorized) {
         if (self.permissionWanted) {
