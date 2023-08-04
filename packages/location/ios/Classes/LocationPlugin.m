@@ -47,6 +47,10 @@
   }
   return self;
 }
+- (void)restartLocationUpdates {
+    [self.clLocationManager startUpdatingLocation];
+}
+
 
 - (void)initLocation {
   if (!(self.hasInit)) {
@@ -349,6 +353,9 @@
       self.flutterResult(@0);
     }
   }
+- (void)locationManagerDidPauseLocationUpdates:(CLLocationManager *)manager {
+      [self restartLocationUpdates];
+  }
 #if TARGET_OS_OSX
   else if (status == kCLAuthorizationStatusAuthorized) {
     if (self.permissionWanted) {
@@ -385,5 +392,6 @@
   }
 #endif
 }
+
 
 @end
