@@ -318,6 +318,10 @@
     }
 }
 
+- (void)locationManagerDidPauseLocationUpdates:(CLLocationManager *)manager {
+    [self restartLocationUpdates];
+}
+
 - (void)locationManager:(CLLocationManager *)manager
     didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     if (status == kCLAuthorizationStatusDenied) {
@@ -327,9 +331,6 @@
         }
     }
 
-- (void)locationManagerDidPauseLocationUpdates:(CLLocationManager *)manager {
-    [self restartLocationUpdates];
-}
 #if TARGET_OS_OSX
     else if (status == kCLAuthorizationStatusAuthorized) {
         if (self.permissionWanted) {
