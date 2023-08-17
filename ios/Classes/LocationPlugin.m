@@ -61,6 +61,7 @@
     }
 }
 - (void)restartLocationUpdates {
+        [self.clLocationManager stopUpdatingLocation];
     if ([self isPermissionGranted]) {
         [self.clLocationManager startUpdatingLocation];
     } else {
