@@ -61,8 +61,13 @@
     }
 }
 - (void)restartLocationUpdates {
-    [self.clLocationManager startUpdatingLocation];
+    if ([self isPermissionGranted]) {
+        [self.clLocationManager startUpdatingLocation];
+    } else {
+        [self requestPermission];
+    }
 }
+
 
 -(void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
     [self initLocation];
