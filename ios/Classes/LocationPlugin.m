@@ -324,13 +324,8 @@
 }
 
 - (void)locationManagerDidPauseLocationUpdates:(CLLocationManager *)manager {
-    NSException *exception = [NSException
-                              exceptionWithName:@"LocationUpdatesPaused"
-                              reason:@"Location updates have been paused."
-                              userInfo:nil];
-    @throw exception;
+    [self restartLocationUpdates];
 }
-
 
 - (void)locationManager:(CLLocationManager *)manager
     didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
